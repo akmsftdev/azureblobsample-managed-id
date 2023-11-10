@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>File Upload</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Upload a file to Azure Blob Storage</h2>
+        <form method="POST" action="/blob/upload" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" class="form-control" name="file" required>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

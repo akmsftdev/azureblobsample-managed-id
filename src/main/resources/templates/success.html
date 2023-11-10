@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload Successful</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+    <h1 th:text="${message}"></h1>
+    <a th:href="${fileUrl}" th:text="${fileUrl}">Download File</a>
+    <br>
+    <a href="/blob/files" class="btn btn-primary">Uploaded Files</a>
+    </div>
+</body>
+</html>
+

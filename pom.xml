@@ -67,10 +67,10 @@
 		        <version>2.12.0</version>
 		        <configuration>
 		            <schemaVersion>v2</schemaVersion>
-		            <resourceGroup>java-midentity-rg</resourceGroup>
-		            <appName>jmidentity</appName>
-		            <pricingTier>P1v2</pricingTier>
-		            <region>southcentralus</region>
+		            <resourceGroup></resourceGroup>
+		            <appName></appName>
+		            <pricingTier></pricingTier>
+		            <region></region>
 		            <runtime>
 		                <os>Linux</os>
 		                <javaVersion>Java 17</javaVersion>

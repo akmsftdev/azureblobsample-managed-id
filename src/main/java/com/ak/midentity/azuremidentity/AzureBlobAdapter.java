@@ -1,7 +1,6 @@
 package com.ak.midentity.azuremidentity;
 
-import com.azure.identity.ClientSecretCredential;
-import com.azure.identity.ClientSecretCredentialBuilder;
+import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobClientBuilder;
 import com.azure.storage.blob.BlobContainerClient;
@@ -26,24 +25,9 @@ public class AzureBlobAdapter {
 
     private final BlobServiceClient blobServiceClient;
 
-    public AzureBlobAdapter(@Value("${azure.client.id}") String clientId,
-            @Value("${azure.client.secret}") String clientSecret,
-            @Value("${azure.tenant.id}") String tenantId,
-            @Value("${azure.storage.blob-endpoint}") String blobEndpoint) {
-        // Authenticate with Azure AD using DefaultAzureCredential
-        // This will use environment variables for authentication details
-
-        ClientSecretCredential clientSecretCredential = new ClientSecretCredentialBuilder()
-                .clientId(clientId)
-                .clientSecret(clientSecret)
-                .tenantId(tenantId)
-                .build();
-
-        System.out.println("##### ClientSecret creds built #######");
-
-        // new DefaultAzureCredentialBuilder().build()
+    public AzureBlobAdapter(@Value("${azure.storage.blob-endpoint}") String blobEndpoint) {
         blobServiceClient = new BlobServiceClientBuilder()
-                .credential(clientSecretCredential)
+                .credential(new DefaultAzureCredentialBuilder().build())
                 .endpoint(blobEndpoint)
                 .buildClient();
     }

@@ -1,23 +1,35 @@
+## Managed Identity Blob Storage Sample
+This is a sample spring boot application that shows how to upload files to an Azure blob storage account using the Azure BLOB Java SDK, it also illustrates how to create dynamically created SAS tokens using a "User Delegation Key" via a managed identity.
 
-# Azure CLI or PowerShell commands to:
-# 1. Create an App Registration in Azure AD.
-# 2. Generate a client secret for the App Registration.
-# 3. Assign the "Blob Storage Account Administrator" role to the App's service principal.
-# 4. Output the client ID and secret.
+### Prerequisites
+- Azure subscription/account
+- Azure storage account and a Blob storage container already created
 
-# Replace <resource-group-name> and <storage-account-name> with your actual resource names.
 
-# Create App Registration
-$app = az ad app create --display-name "YourAppName"
+### Build & deploy the app
+1. Update the application.properties file to provide your Azure Blob storage account details
+2. Update the maven pom.xml to provide azure app service configuration details, this is needed to use the maven plugin to deploy the application to Azure App Service using mvn commands
+4. Run the following command to build the deployable jar
+    ```shell
+    mvn clean package
+    ```
+5. Deploy the application to Azure using the following command
+    ```
+    mvn azure-webapp:deploy
+    ```
+6. Access the application using the **application url** returned in the previous step
 
-# Get App Registration details
-$appId = $app.appId
-$secret = az ad app credential reset --id $appId --append
+### Azure Portal validation
+1. Ensure that Managed identity is enabled for your application in Azure App Service as shown below
+   ![managed identity](./images/midenity1.png)]
 
-# Assign role to the service principal
-$spId = az ad sp create --id $appId
-az role assignment create --assignee $spId --role "Storage Blob Data Contributor" --scope /subscriptions/<your-subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Storage/storageAccounts/<storage-account-name>
+2. Ensure the managed identity has the required Azure RBAC Storage account assigned to perform the required operations
+   ![managed identity role](./images/midentity2.png)]
 
-# Output client ID and secret
-echo "Client ID: $appId"
-echo "Secret: $secret"
+3. You can validate the managed identity tokens are being created by reviewing the logs from the App service dashboard as shown below
+   ![managed identity role](./images/midenity3.png)]
+
+
+
+
+

@@ -3,7 +3,7 @@ This is a sample spring boot application that shows how to upload files to an Az
 
 ### Prerequisites
 - Azure subscription/account
-- Azure storage account and a Blob storage container already created
+- Azure storage account and a Blob storage container previously created
 
 
 ### Build & deploy the app
@@ -13,7 +13,7 @@ This is a sample spring boot application that shows how to upload files to an Az
     ```shell
     mvn clean package
     ```
-5. Deploy the application to Azure using the following command
+5. Deploy the application to Azure using the following command, this is using the optional maven plugin to deploy to Azure App service, you may also use the Azure CLI to deploy the web app
     ```
     mvn azure-webapp:deploy
     ```
@@ -26,7 +26,7 @@ This is a sample spring boot application that shows how to upload files to an Az
 2. Ensure the managed identity has the required Azure RBAC Storage account assigned to perform the required operations
    ![managed identity role](./images/midentity2.png)]
 
-3. You can validate the managed identity tokens are being created by reviewing the logs from the App service dashboard as shown below
+3. You can validate the managed identity tokens are being created by reviewing the logs from the App service dashboard as shown in the below image
    ![managed identity role](./images/midenity3.png)]
 
 
